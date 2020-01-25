@@ -9,6 +9,8 @@ namespace IssueAndStoryTrackerApplication
   /// </summary>
   public class Program
   {
+    #region Public static methods
+
     /// <summary>
     /// Starter method for the program.
     /// </summary>
@@ -29,5 +31,7 @@ namespace IssueAndStoryTrackerApplication
              {
               webBuilder.UseStartup<Startup>();
             } );
+
+    #endregion
   }
 }

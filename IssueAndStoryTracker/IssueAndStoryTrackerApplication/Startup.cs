@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ISTD = IssueAndStoryTrackerApplication.Data;
 
 namespace IssueAndStoryTrackerApplication
 {
@@ -11,6 +13,17 @@ namespace IssueAndStoryTrackerApplication
   /// </summary>
   public class Startup
   {
+    #region Public properties
+
+    /// <summary>
+    /// Gets the app's configuration key/value properties.
+    /// </summary>
+    public IConfiguration Configuration { get; }
+
+    #endregion
+
+    #region Public methods
+
     /// <summary>
     /// Saves off the given configuration to a property.
     /// </summary>
@@ -21,11 +34,6 @@ namespace IssueAndStoryTrackerApplication
     }
 
     /// <summary>
-    /// Gets the app's configuration key/value properties.
-    /// </summary>
-    public IConfiguration Configuration { get; }
-
-    /// <summary>
     /// This method gets called by the runtime. Use this method to add services to the container.
     /// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
     /// </summary>
@@ -34,7 +42,8 @@ namespace IssueAndStoryTrackerApplication
     {
       services.AddRazorPages();
       services.AddServerSideBlazor();      
-      services.AddServerSideBlazor();      
+      services.AddServerSideBlazor();
+      services.AddDbContext<ISTD.AppDataContext>( options => options.UseSqlServer( Configuration.GetConnectionString( "DefaultConnection" ) ) );
     }
 
     /// <summary>
@@ -65,5 +74,7 @@ namespace IssueAndStoryTrackerApplication
          endpoints.MapFallbackToPage( "/_Host" );
        } );
     }
+
+    #endregion
   }
 }

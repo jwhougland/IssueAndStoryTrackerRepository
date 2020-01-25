@@ -1,0 +1,86 @@
+﻿@page "/AddIssue"
+@using IssueAndStoryTrackerApplication.Data
+@inject IssueService issueService
+@inject NavigationManager navigationManager
+
+<h2>Add Issue</h2>
+<hr />
+
+<EditForm Model="@issue" OnValidSubmit="CreateIssue">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <label for="Title" class="control-label">Title</label>
+        <input form="Title" class="form-control" @bind="@issue.Title" />
+      </div>
+      <div class="form-group">
+        <label for="Product" class="control-label">Associated Product</label>
+        <select name="Product" class="form-control" @bind="@issue.AssociatedProduct">
+          <option value="">-- Select Associated Product --</option>
+          <option value="Product A">Product A</option>
+          <option value="Product A">Product B</option>
+          <option value="Product A">Product C</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="AffectedProductVersion" class="control-label">Affected Product Version</label>
+        <input form="AffectedProductVersion" class="form-control" @bind="@issue.AffectedProductVersion" />
+      </div>
+      <div class="form-group">
+        <label for="Type" class="control-label">Work Category</label>
+        <select name="Type" class="form-control" @bind="@issue.WorkProductType">
+          <option value="">-- Select Work Category --</option>
+          <option value="Requirements">Requirements</option>
+          <option value="Design">Design</option>
+          <option value="Code">Code</option>
+          <option value="Tests">Tests</option>
+          <option value="Documentation">Documentation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="FoundBy" class="control-label">Found By</label>
+        <input form="FoundBy" class="form-control" @bind="@issue.FoundBy" />
+      </div>
+      <div class="form-group">
+        <label for="ObservedBehavior" class="control-label">Observed Behavior</label>
+        <input form="ObservedBehavior" class="form-control" @bind="@issue.ObservedBehavior" />
+      </div>
+      <div class="form-group">
+        <label for="ExpectedBehavior" class="control-label">Expected Behavior</label>
+        <input form="ExpectedBehavior" class="form-control" @bind="@issue.ExpectedBehavior" />
+      </div>
+      <div class="form-group">
+        <label for="Points" class="control-label">Estimated Points</label>
+        <input form="Points" class="form-control" @bind="@issue.EstimatedPoints" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <button type="submit">Create Issue</button>        
+      </div>
+    </div>
+  </div>
+</EditForm>
+
+@code {
+
+  /// <summary>
+  /// Contains the data for an issue object that we're going to create.
+  /// </summary>
+  IssueInfo issue = new IssueInfo();
+
+  /// <summary>
+  /// This method is responsible for calling upon the issue service to create an issue.
+  /// </summary>
+  protected void CreateIssue()
+  {
+    issueService.CreateIssue( issue );
+    navigationManager.NavigateTo( "Issue" );
+  }
+}

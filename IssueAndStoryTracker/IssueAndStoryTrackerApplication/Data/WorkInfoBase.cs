@@ -114,7 +114,7 @@ namespace IssueAndStoryTrackerApplication.Data
     {
       get;
       set;
-    }
+    } = "System";
 
     /// <summary>
     /// Gets or sets the date and time when a work planning object was created.
@@ -165,7 +165,7 @@ namespace IssueAndStoryTrackerApplication.Data
     {
       get;
       set;
-    }
+    } = "Created";
 
     /// <summary>
     /// Gets or sets the title of a work planning object.

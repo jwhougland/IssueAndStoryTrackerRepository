@@ -43,6 +43,7 @@ namespace IssueAndStoryTrackerApplication
       services.AddRazorPages();
       services.AddServerSideBlazor();      
       services.AddServerSideBlazor();
+      services.AddScoped<ISTD.IssueService>();
       services.AddDbContext<ISTD.AppDataContext>( options => options.UseSqlServer( Configuration.GetConnectionString( "DefaultConnection" ) ) );
     }
 

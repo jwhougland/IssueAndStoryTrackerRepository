@@ -58,6 +58,13 @@ namespace IssueAndStoryTrackerApplication.Data
     {
       try
       {
+        // Save off the current time
+        SYS.DateTime currentTime = SYS.DateTime.Now;
+
+        // Assign data to a few required properties
+        issue.CreatedOn = currentTime;
+        issue.LastUpdatedOn = currentTime;        
+                
         // Attempt to add the issue to the context and save changes.
         m_dataContext.Issues.Add( issue );
         m_dataContext.SaveChanges();

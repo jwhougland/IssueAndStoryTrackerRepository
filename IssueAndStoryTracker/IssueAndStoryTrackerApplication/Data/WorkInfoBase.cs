@@ -70,8 +70,7 @@ namespace IssueAndStoryTrackerApplication.Data
     /// Creates a fully initialized <see cref="WorkInfoBase"/> instance.
     /// </summary>
     public WorkInfoBase()
-    {
-      WorkInfoID = SYS.Guid.NewGuid();
+    {      
     }
 
     #endregion
@@ -82,7 +81,7 @@ namespace IssueAndStoryTrackerApplication.Data
     /// Gets or privately sets the primary key for a work planning object.
     /// </summary>
     [SCD.Key]
-    public SYS.Guid WorkInfoID
+    public int WorkInfoID
     {
       get;
       private set;

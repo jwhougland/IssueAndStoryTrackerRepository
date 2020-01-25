@@ -21,9 +21,10 @@ namespace IssueAndStoryTrackerApplication.Migrations
 
             modelBuilder.Entity("IssueAndStoryTrackerApplication.Data.IssueInfo", b =>
                 {
-                    b.Property<Guid>("WorkInfoID")
+                    b.Property<int>("WorkInfoID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AffectedProductVersion")
                         .IsRequired()
@@ -97,9 +98,10 @@ namespace IssueAndStoryTrackerApplication.Migrations
 
             modelBuilder.Entity("IssueAndStoryTrackerApplication.Data.StoryInfo", b =>
                 {
-                    b.Property<Guid>("WorkInfoID")
+                    b.Property<int>("WorkInfoID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AssignedSprint")
                         .HasColumnType("nvarchar(max)");

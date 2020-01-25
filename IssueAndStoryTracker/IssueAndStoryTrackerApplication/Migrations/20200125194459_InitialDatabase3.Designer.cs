@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IssueAndStoryTrackerApplication.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20200125184102_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20200125194459_InitialDatabase3")]
+    partial class InitialDatabase3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,10 @@ namespace IssueAndStoryTrackerApplication.Migrations
 
             modelBuilder.Entity("IssueAndStoryTrackerApplication.Data.IssueInfo", b =>
                 {
-                    b.Property<Guid>("WorkInfoID")
+                    b.Property<int>("WorkInfoID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AffectedProductVersion")
                         .IsRequired()
@@ -99,9 +100,10 @@ namespace IssueAndStoryTrackerApplication.Migrations
 
             modelBuilder.Entity("IssueAndStoryTrackerApplication.Data.StoryInfo", b =>
                 {
-                    b.Property<Guid>("WorkInfoID")
+                    b.Property<int>("WorkInfoID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AssignedSprint")
                         .HasColumnType("nvarchar(max)");

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IssueAndStoryTrackerApplication.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class InitialDatabase3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,8 @@ namespace IssueAndStoryTrackerApplication.Migrations
                 name: "Issues",
                 columns: table => new
                 {
-                    WorkInfoID = table.Column<Guid>(nullable: false),
+                    WorkInfoID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AssignedSprint = table.Column<string>(nullable: true),
                     AssociatedProduct = table.Column<string>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: false),
@@ -38,7 +39,8 @@ namespace IssueAndStoryTrackerApplication.Migrations
                 name: "Stories",
                 columns: table => new
                 {
-                    WorkInfoID = table.Column<Guid>(nullable: false),
+                    WorkInfoID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AssignedSprint = table.Column<string>(nullable: true),
                     AssociatedProduct = table.Column<string>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: false),

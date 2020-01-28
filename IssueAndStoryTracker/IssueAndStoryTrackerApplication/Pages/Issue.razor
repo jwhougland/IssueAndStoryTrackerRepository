@@ -1,0 +1,61 @@
+﻿@page "/issue"
+@using IssueAndStoryTrackerApplication.Data
+@inject IssueService issueService
+
+<h1>Issues</h1>
+
+<NavLink class="nav-link" href="AddIssue">
+  <span class="oi oi-plus" aria-hidden="true"></span>Add New Issue
+</NavLink>
+
+@if ( issues == null )
+{
+  <p><em>Loading...</em></p>
+}
+else
+{
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Product</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ( IssueInfo issue in issues )
+      {
+        <tr>
+          <td>@issue.WorkInfoID</td>
+          <td>@issue.Title</td>
+          <td>@issue.AssociatedProduct</td>
+          <td>@issue.State</td>
+          <td>
+            <a class="nav-link" href="EditIssue/@issue.WorkInfoID">
+              <span class="oi oi-pencil" aria-hidden="true"></span>Edit
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+@code {
+
+  /// <summary>
+  /// Contains the list of issues.
+  /// </summary>
+  List<IssueInfo> issues = new List<IssueInfo>();
+
+  /// <summary>
+  /// Queries the data context for issues when this
+  /// razor component completes initialization.
+  /// </summary>
+  /// <returns>A collection of issues in the data context.</returns>
+  protected override async Task OnInitializedAsync()
+  {
+    issues = await Task.Run( () => issueService.GetIssues() );
+  }
+}

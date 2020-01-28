@@ -13,7 +13,7 @@ namespace IssueAndStoryTrackerApplication.Data
     #region Public constants
     
     /// <summary>
-    /// Satus message for when a failure occurs saving an issue.
+    /// Status message for when a failure occurs saving an issue.
     /// </summary>
     public const string IssueSaveFailureMsg = "An error occured saving the issue.  Please try again later.";
 

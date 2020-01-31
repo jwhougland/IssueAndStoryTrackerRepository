@@ -8,11 +8,7 @@
   <span class="oi oi-plus" aria-hidden="true"></span>Add New Issue
 </NavLink>
 
-@if ( issues == null )
-{
-  <p><em>Loading...</em></p>
-}
-else
+@if ( issues.Any() )
 {
   <table class="table">
     <thead>

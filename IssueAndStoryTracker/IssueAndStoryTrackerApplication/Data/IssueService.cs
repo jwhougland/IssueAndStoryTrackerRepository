@@ -78,7 +78,14 @@ namespace IssueAndStoryTrackerApplication.Data
       // Report that the issue was saved successfully.
       return IssueSaveSuccessMsg;
     }
-    
+
+    /// <summary>
+    /// This method returns an issue whose ID matches the given ID.
+    /// </summary>
+    /// <param name="issueID">Uniquely identifies an issue.</param>
+    /// <returns>See method description.</returns>
+    public IssueInfo GetIssueByID( int issueID ) => m_dataContext.Issues.Single( obj => obj.WorkInfoID == issueID );
+
     /// <summary>
     /// Returns a list of issue records in the data context.
     /// </summary>

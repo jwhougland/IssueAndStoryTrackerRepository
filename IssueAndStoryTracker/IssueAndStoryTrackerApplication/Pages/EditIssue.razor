@@ -56,6 +56,28 @@
         <label for="Points" class="control-label">Estimated Points</label>
         <input form="Points" class="form-control" @bind="@issue.EstimatedPoints" />
       </div>
+      <div class="form-group">
+        <label for="Status" class="control-label">Status</label>
+        <select name="Status" class="form-control" @bind="@issue.State">
+          <option value="">-- Select Status --</option>
+          <option value="To Do">To Do</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Done">Done</option>
+          <option value="Accepted">Accepted</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="CreatedBy" class="control-label">Created By</label>
+        <input form="CreatedBy" class="form-control" readonly="readonly" disabled="disabled" @bind="@issue.CreatedBy" />
+      </div>
+      <div class="form-group">
+        <label for="CreatedOn" class="control-label">Created On</label>
+        <input form="CreatedOn" class="form-control" readonly="readonly" disabled="disabled" @bind="@issue.CreatedOn" />
+      </div>
+      <div class="form-group">
+        <label for="LastUpdatedOn" class="control-label">Last Updated On</label>
+        <input form="LastUpdatedOn" class="form-control" readonly="readonly" disabled="disabled" @bind="@issue.LastUpdatedOn" />
+      </div>
     </div>
   </div>
   <div class="row">

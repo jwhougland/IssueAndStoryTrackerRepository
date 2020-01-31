@@ -104,6 +104,7 @@ namespace IssueAndStoryTrackerApplication.Data
       {
         // Attempt to update the issue record in the
         // context and save the changes in the context.
+        issue.LastUpdatedOn = SYS.DateTime.Now;
         m_dataContext.Issues.Update( issue );
         m_dataContext.SaveChanges();
       }

@@ -1,0 +1,60 @@
+﻿@page "/story"
+@using IssueAndStoryTrackerApplication.Data
+@inject StoryService storyService
+
+<h1>Stories</h1>
+
+<!-- Link for adding a new story -->
+<NavLink class="nav-link" href="AddStory">
+  <span class="oi oi-plus" aria-hidden="true"></span> Add New Story
+</NavLink>
+
+@if ( stories.Any() )
+{
+  <!-- We're hrere because we have at least one story, so let's
+       display a subset of the story attributes in a table. -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Product</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (StoryInfo story in stories)
+      {
+        <tr>
+          <td>@story.WorkInfoID</td>
+          <td>@story.Title</td>
+          <td>@story.AssociatedProduct</td>
+          <td>@story.State</td>
+          <td>
+            <a class="nav-link" href="EditIssue/@story.WorkInfoID">
+              <span class="oi oi-pencil" aria-hidden="true"></span>Edit
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+
+@code {
+
+  /// <summary>
+  /// Collection of stories
+  /// </summary>
+  List<StoryInfo> stories = new List<StoryInfo>();
+
+  /// <summary>
+  /// Queries the data context for stories when this
+  /// razor component completes initialization.
+  /// </summary>  
+  protected override async Task OnInitializedAsync()
+  {
+    stories = await Task.Run( () => storyService.GetAll() );
+  }
+}

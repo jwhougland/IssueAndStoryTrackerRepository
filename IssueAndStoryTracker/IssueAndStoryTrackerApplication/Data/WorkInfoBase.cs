@@ -71,6 +71,7 @@ namespace IssueAndStoryTrackerApplication.Data
     /// </summary>
     public WorkInfoBase()
     {      
+      // No processing
     }
 
     #endregion

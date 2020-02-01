@@ -52,6 +52,6 @@
   /// <returns>A collection of issues in the data context.</returns>
   protected override async Task OnInitializedAsync()
   {
-    issues = await Task.Run( () => issueService.GetIssues() );
+    issues = await Task.Run( () => issueService.GetAll() );
   }
 }

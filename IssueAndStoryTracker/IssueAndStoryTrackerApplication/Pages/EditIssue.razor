@@ -114,7 +114,7 @@
   /// <returns>An issue whose ID matches the given ID.</returns>
   protected override async Task OnInitializedAsync()
   {
-    issue = await Task.Run( () => issueService.GetIssueByID( Convert.ToInt32( CurrentID ) ) );
+    issue = await Task.Run( () => issueService.GetByID( Convert.ToInt32( CurrentID ) ) );
   }
 
   /// <summary>
@@ -123,7 +123,7 @@
   /// </summary>
   private void UpdateIssue()
   {
-    issueService.UpdateIssue( issue );
+    issueService.Update( issue );
     navigationManager.NavigateTo( "Issue" );
   }
 }

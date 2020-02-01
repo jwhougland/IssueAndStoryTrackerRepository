@@ -12,10 +12,14 @@
 
   <div class="row">
     <div class="col-md-8">
+
+      <!-- Title input -->
       <div class="form-group">
         <label for="Title" class="control-label">Title</label>
         <input form="Title" class="form-control" @bind="@issue.Title" />
       </div>
+
+      <!-- Associated Product input -->
       <div class="form-group">
         <label for="Product" class="control-label">Associated Product</label>
         <select name="Product" class="form-control" @bind="@issue.AssociatedProduct">
@@ -25,10 +29,14 @@
           <option value="Product A">Product C</option>
         </select>
       </div>
+
+      <!-- Affected Product Version input -->
       <div class="form-group">
         <label for="AffectedProductVersion" class="control-label">Affected Product Version</label>
         <input form="AffectedProductVersion" class="form-control" @bind="@issue.AffectedProductVersion" />
       </div>
+
+      <!-- Work Product Type input -->
       <div class="form-group">
         <label for="Type" class="control-label">Work Category</label>
         <select name="Type" class="form-control" @bind="@issue.WorkProductType">
@@ -40,22 +48,32 @@
           <option value="Documentation">Documentation</option>
         </select>
       </div>
+
+      <!-- Found By input -->
       <div class="form-group">
         <label for="FoundBy" class="control-label">Found By</label>
         <input form="FoundBy" class="form-control" @bind="@issue.FoundBy" />
       </div>
+
+      <!-- Observed Behavior input -->
       <div class="form-group">
         <label for="ObservedBehavior" class="control-label">Observed Behavior</label>
         <input form="ObservedBehavior" class="form-control" @bind="@issue.ObservedBehavior" />
       </div>
+
+      <!-- Expected Behavior input -->
       <div class="form-group">
         <label for="ExpectedBehavior" class="control-label">Expected Behavior</label>
         <input form="ExpectedBehavior" class="form-control" @bind="@issue.ExpectedBehavior" />
       </div>
+
+      <!-- Estimated Points input -->
       <div class="form-group">
         <label for="Points" class="control-label">Estimated Points</label>
         <input form="Points" class="form-control" @bind="@issue.EstimatedPoints" />
       </div>
+
+      <!-- Issue Status input -->
       <div class="form-group">
         <label for="Status" class="control-label">Status</label>
         <select name="Status" class="form-control" @bind="@issue.State">
@@ -66,20 +84,28 @@
           <option value="Accepted">Accepted</option>
         </select>
       </div>
+
+      <!-- Created By (read only) -->
       <div class="form-group">
         <label for="CreatedBy" class="control-label">Created By</label>
         <input form="CreatedBy" class="form-control" readonly="readonly" disabled="disabled" @bind="@issue.CreatedBy" />
       </div>
+
+      <!-- Created On (read only)-->
       <div class="form-group">
         <label for="CreatedOn" class="control-label">Created On</label>
         <input form="CreatedOn" class="form-control" readonly="readonly" disabled="disabled" @bind="@issue.CreatedOn" />
       </div>
+
+      <!-- Last Updated On (read only)-->
       <div class="form-group">
         <label for="LastUpdatedOn" class="control-label">Last Updated On</label>
         <input form="LastUpdatedOn" class="form-control" readonly="readonly" disabled="disabled" @bind="@issue.LastUpdatedOn" />
       </div>
     </div>
   </div>
+
+  <!-- Edit Issue button -->
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">

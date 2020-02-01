@@ -73,13 +73,15 @@ namespace IssueAndStoryTrackerApplication.Data
     /// </summary>
     /// <param name="storyID">Uniquely identifies a story.</param>
     /// <returns>See method description.</returns>
-    public override StoryInfo GetByID( int storyID ) => DataContext.Stories.Single( obj => obj.WorkInfoID == storyID );
+    public override StoryInfo GetByID( int storyID ) =>
+      DataContext.Stories.Single( obj => obj.WorkInfoID == storyID );
 
     /// <summary>
     /// Returns a collection of story records in the data context.
     /// </summary>
     /// <returns>See method description.</returns>
-    public override SCG.List<StoryInfo> GetAll() => DataContext.Stories.ToList();
+    public override SCG.List<StoryInfo> GetAll() =>
+      DataContext.Stories.ToList();
 
     /// <summary>
     /// This method updates a story record in

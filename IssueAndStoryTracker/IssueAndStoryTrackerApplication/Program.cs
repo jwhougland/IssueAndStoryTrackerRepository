@@ -14,7 +14,7 @@ namespace IssueAndStoryTrackerApplication
     /// <summary>
     /// Starter method for the program.
     /// </summary>
-    /// <param name="args">Collection of arguments for the host builder creation activity..</param>
+    /// <param name="args">Collection of arguments for the host builder creation activity.</param>
     public static void Main( string[] args )
     {
       CreateHostBuilder( args ).Build().Run();

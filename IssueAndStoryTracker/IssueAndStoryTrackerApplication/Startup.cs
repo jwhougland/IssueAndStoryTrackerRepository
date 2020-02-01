@@ -13,6 +13,19 @@ namespace IssueAndStoryTrackerApplication
   /// </summary>
   public class Startup
   {
+    #region Constructors
+
+    /// <summary>
+    /// Saves off the given configuration to a property.
+    /// </summary>
+    /// <param name="configuration">Represents key/value properties for the app's configuration.</param>
+    public Startup( IConfiguration configuration )
+    {
+      Configuration = configuration;
+    }
+
+    #endregion
+
     #region Public properties
 
     /// <summary>
@@ -23,15 +36,6 @@ namespace IssueAndStoryTrackerApplication
     #endregion
 
     #region Public methods
-
-    /// <summary>
-    /// Saves off the given configuration to a property.
-    /// </summary>
-    /// <param name="configuration">Represents key/value properties for the app's configuration.</param>
-    public Startup( IConfiguration configuration )
-    {
-      Configuration = configuration;
-    }
 
     /// <summary>
     /// This method gets called by the runtime. Use this method to add services to the container.

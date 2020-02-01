@@ -140,7 +140,8 @@
   /// <returns>An issue whose ID matches the given ID.</returns>
   protected override async Task OnInitializedAsync()
   {
-    issue = await Task.Run( () => issueService.GetByID( Convert.ToInt32( CurrentID ) ) );
+    int idAsInt = Convert.ToInt32( CurrentID );
+    issue = await Task.Run( () => issueService.GetByID( idAsInt ) );
   }
 
   /// <summary>

@@ -1,0 +1,104 @@
+﻿@page "/AddStory"
+@using IssueAndStoryTrackerApplication.Data
+@inject StoryService storyService
+@inject NavigationManager navigationManager
+
+<h2>Add Story</h2>
+<hr />
+
+<EditForm Model="@story" OnValidSubmit="CreateStory">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <!-- Title input -->
+      <div class="form-group">
+        <label for="Title" class="control-label">Title</label>
+        <input form="Title" class="form-control" @bind="@story.Title" />
+      </div>
+
+      <!-- Associated Product input -->
+      <div class="form-group">
+        <label for="Product" class="control-label">Associated Product</label>
+        <select name="Product" class="form-control" @bind="@story.AssociatedProduct">
+          <option value="">-- Select Associated Product --</option>
+          <option value="Product A">Product A</option>
+          <option value="Product A">Product B</option>
+          <option value="Product A">Product C</option>
+        </select>
+      </div>
+
+      <!-- Work Category input -->
+      <div class="form-group">
+        <label for="Type" class="control-label">Work Category</label>
+        <select name="Type" class="form-control" @bind="@story.WorkProductType">
+          <option value="">-- Select Work Category --</option>
+          <option value="Requirements">Requirements</option>
+          <option value="Design">Design</option>
+          <option value="Code">Code</option>
+          <option value="Tests">Tests</option>
+          <option value="Documentation">Documentation</option>
+        </select>
+      </div>
+
+      <!-- Story Description input -->
+      <div class="form-group">
+        <label for="StoryDescription" class="control-label">Story Description</label>
+        <input form="StoryDescription" class="form-control" @bind="@story.StoryDescription" />
+      </div>
+
+      <!-- Completion Criteria input -->
+      <div class="form-group">
+        <label for="CompletionCriteria" class="control-label">Completion Criteria</label>
+        <input form="CompletionCriteria" class="form-control" @bind="@story.CompletionCriteria" />
+      </div>
+
+      <!-- Business Case input -->
+      <div class="form-group">
+        <label for="BusinessCase" class="control-label">Business Case</label>
+        <input form="BusinessCase" class="form-control" @bind="@story.BusinessCase" />
+      </div>
+
+      <!-- Requested By input -->
+      <div class="form-group">
+        <label for="RequestedBy" class="control-label">Requested By</label>
+        <input form="RequestedBy" class="form-control" @bind="@story.RequestedBy" />
+      </div>
+
+      <!-- Estimated Points input -->
+      <div class="form-group">
+        <label for="Points" class="control-label">Estimated Points</label>
+        <input form="Points" class="form-control" @bind="@story.EstimatedPoints" />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Create Story button -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <button type="submit">Create Story</button>
+      </div>
+    </div>
+  </div>
+</EditForm>
+
+@code {
+
+  /// <summary>
+  /// Contains the data for a story object we're going to create.
+  /// </summary>
+  StoryInfo story = new StoryInfo();
+
+  /// <summary>
+  /// This method is responsible for calling upon the story service to create a story.
+  /// </summary>
+  protected void CreateStory()
+  {
+    storyService.Create( story );
+    navigationManager.NavigateTo( "Story" );
+  }
+}

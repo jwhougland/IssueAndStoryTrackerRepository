@@ -24,9 +24,10 @@
         <label for="Product" class="control-label">Associated Product</label>
         <select name="Product" class="form-control" @bind="@issue.AssociatedProduct">
           <option value="">-- Select Associated Product --</option>
-          <option value="Product A">Product A</option>
-          <option value="Product A">Product B</option>
-          <option value="Product A">Product C</option>
+          @foreach ( string product in products )
+          {
+            <option value="@product">@product</option>
+          }
         </select>
       </div>
 
@@ -41,11 +42,10 @@
         <label for="Type" class="control-label">Work Category</label>
         <select name="Type" class="form-control" @bind="@issue.WorkProductType">
           <option value="">-- Select Work Category --</option>
-          <option value="Requirements">Requirements</option>
-          <option value="Design">Design</option>
-          <option value="Code">Code</option>
-          <option value="Tests">Tests</option>
-          <option value="Documentation">Documentation</option>
+          @foreach ( string workCategory in workCategories )
+          {
+            <option value="@workCategory">@workCategory</option>
+          }
         </select>
       </div>
 
@@ -93,11 +93,30 @@
   IssueInfo issue = new IssueInfo();
 
   /// <summary>
+  /// Collection of products that can be associated with an issue.
+  /// </summary>
+  List<string> products = new List<string>();
+
+  /// <summary>
+  /// Collection of work categories that can be associated with an issue.
+  /// </summary>
+  List<string> workCategories = new List<string>();
+  
+  /// <summary>
   /// This method is responsible for calling upon the issue service to create an issue.
   /// </summary>
   protected void CreateIssue()
   {
     issueService.Create( issue );
     navigationManager.NavigateTo( "Issue" );
+  }
+
+  /// <summary>
+  /// Obtains a collection of products that can be associated with a story.  
+  /// </summary>  
+  protected override async Task OnInitializedAsync()
+  {
+    products = await Task.Run( () => issueService.GetProductNames() );
+    workCategories = await Task.Run( () => issueService.GetWorkCategories() );
   }
 }

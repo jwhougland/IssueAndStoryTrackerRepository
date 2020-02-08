@@ -1,6 +1,6 @@
-﻿using SYS = System;
+﻿using System.Linq;
 using SCG = System.Collections.Generic;
-using System.Linq;
+using SYS = System;
 
 namespace IssueAndStoryTrackerApplication.Data
 {
@@ -52,13 +52,13 @@ namespace IssueAndStoryTrackerApplication.Data
 
         // Assign data to a few required timestamp properties
         issue.CreatedOn = currentTime;
-        issue.LastUpdatedOn = currentTime;        
-                
+        issue.LastUpdatedOn = currentTime;
+
         // Attempt to add the issue to the context and save changes
         DataContext.Issues.Add( issue );
         DataContext.SaveChanges();
       }
-      catch ( SYS.Exception )
+      catch (SYS.Exception)
       {
         // Report a failure
         return SaveFailureMessage;
@@ -99,7 +99,7 @@ namespace IssueAndStoryTrackerApplication.Data
         DataContext.Issues.Update( issue );
         DataContext.SaveChanges();
       }
-      catch ( SYS.Exception )
+      catch (SYS.Exception)
       {
         // Report a failure
         return SaveFailureMessage;

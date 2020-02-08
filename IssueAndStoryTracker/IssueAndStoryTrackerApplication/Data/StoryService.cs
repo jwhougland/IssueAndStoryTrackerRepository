@@ -1,6 +1,6 @@
-﻿using SYS = System;
+﻿using System.Linq;
 using SCG = System.Collections.Generic;
-using System.Linq;
+using SYS = System;
 
 namespace IssueAndStoryTrackerApplication.Data
 {
@@ -29,13 +29,13 @@ namespace IssueAndStoryTrackerApplication.Data
     /// <summary>
     /// Status message for when a failure occurs saving a story.
     /// </summary>
-    protected override string SaveFailureMessage => 
+    protected override string SaveFailureMessage =>
       "An error occurred saving the story.  Please try again later";
 
     /// <summary>
     /// Status message for when a story is successfully saved.
     /// </summary>
-    protected override string SaveSuccessMessage => 
+    protected override string SaveSuccessMessage =>
       "Story saved successfully";
 
     /// <summary>
@@ -58,7 +58,7 @@ namespace IssueAndStoryTrackerApplication.Data
         DataContext.Stories.Add( story );
         DataContext.SaveChanges();
       }
-      catch( SYS.Exception )
+      catch (SYS.Exception)
       {
         // Report a failure
         return SaveFailureMessage;
@@ -99,7 +99,7 @@ namespace IssueAndStoryTrackerApplication.Data
         DataContext.Stories.Update( story );
         DataContext.SaveChanges();
       }
-      catch ( SYS.Exception )
+      catch (SYS.Exception)
       {
         // Report a failure
         return SaveFailureMessage;

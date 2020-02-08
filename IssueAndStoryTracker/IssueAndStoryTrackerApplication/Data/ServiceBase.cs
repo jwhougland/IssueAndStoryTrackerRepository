@@ -1,5 +1,5 @@
-﻿using SYS = System;
-using SCG = System.Collections.Generic;
+﻿using SCG = System.Collections.Generic;
+using SYS = System;
 
 namespace IssueAndStoryTrackerApplication.Data
 {
@@ -75,12 +75,57 @@ namespace IssueAndStoryTrackerApplication.Data
     public abstract SCG.List<T> GetAll();
 
     /// <summary>
+    /// Returns a collection of product names that can be associated with a work item.
+    /// </summary>
+    /// <returns>See method description.</returns>
+    public SCG.List<string> GetProductNames()
+    {
+      return new SCG.List<string>()
+      {
+        "Product A",
+        "Product B",
+        "Product C"
+      };
+    }
+
+    /// <summary>
+    /// Returns a collection of status options that can be associated with a work item.
+    /// </summary>
+    /// <returns>See method description.</returns>
+    public SCG.List<string> GetStatusOptions()
+    {
+      return new SCG.List<string>()
+      {
+        "To Do",
+        "In Progress",
+        "Done",
+        "Accepted"
+      };
+    }
+
+    /// <summary>
+    /// Returns a collection of work categories that can be associated with a work item.
+    /// </summary>
+    /// <returns>See method description.</returns>
+    public SCG.List<string> GetWorkCategories()
+    {
+      return new SCG.List<string>()
+      {
+        "Requirements",
+        "Design",
+        "Code",
+        "Test",
+        "Documentation"
+      };
+    }
+
+    /// <summary>
     /// Updates a <see cref="WorkInfoBase"/> entity
     /// in the data context with the given data.
     /// </summary>
     /// <param name="item">Updated <see cref="WorkInfoBase"/> entity data to write into the data context.</param>
     /// <returns>A success or failure message.</returns>
-    public abstract string Update( T item );    
+    public abstract string Update( T item );
 
     #endregion
   }

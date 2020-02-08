@@ -1,5 +1,5 @@
-﻿using SYS = System;
-using SCD = System.ComponentModel.DataAnnotations;
+﻿using SCD = System.ComponentModel.DataAnnotations;
+using SYS = System;
 
 namespace IssueAndStoryTrackerApplication.Data
 {
@@ -70,7 +70,7 @@ namespace IssueAndStoryTrackerApplication.Data
     /// Creates a fully initialized <see cref="WorkInfoBase"/> instance.
     /// </summary>
     public WorkInfoBase()
-    {      
+    {
       // No processing
     }
 
@@ -136,7 +136,7 @@ namespace IssueAndStoryTrackerApplication.Data
       get;
       set;
     }
-       
+
     /// <summary>
     /// Gets or sets the date and time when a work planning object was last updated.
     /// </summary>
@@ -173,9 +173,9 @@ namespace IssueAndStoryTrackerApplication.Data
     /// </summary>
     [SCD.Required]
     [SCD.StringLength( TitleLengthMax, ErrorMessage = TitleLengthErrorMsg )]
-    [SCD.RegularExpression( AllowedCharactersRegex , ErrorMessage = ProhibitedCharactersErrorMsg )]
+    [SCD.RegularExpression( AllowedCharactersRegex, ErrorMessage = ProhibitedCharactersErrorMsg )]
     public string Title
-    { 
+    {
       get;
       set;
     }

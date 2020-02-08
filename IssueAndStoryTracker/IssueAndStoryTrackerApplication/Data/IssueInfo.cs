@@ -1,5 +1,5 @@
-﻿using SYS = System;
-using SCD = System.ComponentModel.DataAnnotations;
+﻿using SCD = System.ComponentModel.DataAnnotations;
+using SYS = System;
 
 namespace IssueAndStoryTrackerApplication.Data
 {
@@ -14,7 +14,7 @@ namespace IssueAndStoryTrackerApplication.Data
     /// <summary>
     /// Creates a fully initialized <see cref="IssueInfo"/> instance.
     /// </summary>
-    public IssueInfo() 
+    public IssueInfo()
       : base()
     {
       // No processing

@@ -1,5 +1,5 @@
-﻿using SYS = System;
-using SCD = System.ComponentModel.DataAnnotations;
+﻿using SCD = System.ComponentModel.DataAnnotations;
+using SYS = System;
 
 namespace IssueAndStoryTrackerApplication.Data
 {
@@ -15,7 +15,7 @@ namespace IssueAndStoryTrackerApplication.Data
     /// Error message for when the business case exceeds the maximum number of allowed characters.
     /// </summary>
     public const string BusinessCaseLengthErrorMsg = "Business case cannot exceed {1} characters";
-    
+
     /// <summary>
     /// The maximum number of characters for a business case.
     /// </summary>

@@ -29,8 +29,8 @@ namespace IssueAndStoryTrackerApplication
         Host.CreateDefaultBuilder( args )
             .ConfigureWebHostDefaults( webBuilder =>
              {
-              webBuilder.UseStartup<Startup>();
-            } );
+               webBuilder.UseStartup<Startup>();
+             } );
 
     #endregion
   }

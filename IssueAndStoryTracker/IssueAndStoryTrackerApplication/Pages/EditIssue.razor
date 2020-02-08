@@ -24,9 +24,10 @@
         <label for="Product" class="control-label">Associated Product</label>
         <select name="Product" class="form-control" @bind="@issue.AssociatedProduct">
           <option value="">-- Select Associated Product --</option>
-          <option value="Product A">Product A</option>
-          <option value="Product A">Product B</option>
-          <option value="Product A">Product C</option>
+          @foreach ( string product in products )
+          {
+            <option value="@product">@product</option>
+          }
         </select>
       </div>
 
@@ -41,11 +42,10 @@
         <label for="Type" class="control-label">Work Category</label>
         <select name="Type" class="form-control" @bind="@issue.WorkProductType">
           <option value="">-- Select Work Category --</option>
-          <option value="Requirements">Requirements</option>
-          <option value="Design">Design</option>
-          <option value="Code">Code</option>
-          <option value="Tests">Tests</option>
-          <option value="Documentation">Documentation</option>
+          @foreach ( string workCategory in workCategories )
+          {
+            <option value="@workCategory">@workCategory</option>
+          }
         </select>
       </div>
 
@@ -78,10 +78,10 @@
         <label for="Status" class="control-label">Status</label>
         <select name="Status" class="form-control" @bind="@issue.State">
           <option value="">-- Select Status --</option>
-          <option value="To Do">To Do</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Done">Done</option>
-          <option value="Accepted">Accepted</option>
+          @foreach ( string statusOption in statusOptions )
+          {
+            <option value="@statusOption">@statusOption</option>
+          }
         </select>
       </div>
 
@@ -134,6 +134,21 @@
   private IssueInfo issue = new IssueInfo();
 
   /// <summary>
+  /// Collection of products that can be associated with an issue.
+  /// </summary>
+  List<string> products = new List<string>();
+
+  /// <summary>
+  /// Collection of status options that can be associated with an issue.
+  /// </summary>
+  List<string> statusOptions = new List<string>();
+
+  /// <summary>
+  /// Collection of work categories that can be associated with an issue.
+  /// </summary>
+  List<string> workCategories = new List<string>();
+
+  /// <summary>
   /// This method queries the data context for an issue whose ID matches
   /// the current ID passed into this razor component.
   /// </summary>
@@ -142,6 +157,9 @@
   {
     int idAsInt = Convert.ToInt32( CurrentID );
     issue = await Task.Run( () => issueService.GetByID( idAsInt ) );
+    products = await Task.Run( () => issueService.GetProductNames() );
+    statusOptions = await Task.Run( () => issueService.GetStatusOptions() );
+    workCategories = await Task.Run( () => issueService.GetWorkCategories() );
   }
 
   /// <summary>

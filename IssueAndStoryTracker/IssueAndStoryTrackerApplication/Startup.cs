@@ -45,7 +45,7 @@ namespace IssueAndStoryTrackerApplication
     public void ConfigureServices( IServiceCollection services )
     {
       services.AddRazorPages();
-      services.AddServerSideBlazor();      
+      services.AddServerSideBlazor();
       services.AddServerSideBlazor();
       services.AddScoped<ISTD.IssueService>();
       services.AddScoped<ISTD.StoryService>();
@@ -65,7 +65,7 @@ namespace IssueAndStoryTrackerApplication
       }
       else
       {
-        app.UseExceptionHandler( "/Error" );        
+        app.UseExceptionHandler( "/Error" );
         app.UseHsts();
       }
 

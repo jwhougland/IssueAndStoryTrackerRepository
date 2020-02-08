@@ -1,5 +1,5 @@
-﻿using SYS = System;
-using MSEFC = Microsoft.EntityFrameworkCore;
+﻿using MSEFC = Microsoft.EntityFrameworkCore;
+using SYS = System;
 
 namespace IssueAndStoryTrackerApplication.Data
 {
@@ -29,7 +29,7 @@ namespace IssueAndStoryTrackerApplication.Data
     /// <summary>
     /// Gets or sets the <see cref="IssueInfo"/> records in the data context.
     /// </summary>
-    public MSEFC.DbSet<IssueInfo> Issues 
+    public MSEFC.DbSet<IssueInfo> Issues
     {
       get;
       set;

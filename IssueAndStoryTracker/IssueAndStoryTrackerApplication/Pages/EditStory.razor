@@ -1,0 +1,173 @@
+﻿@page "/EditStory/{CurrentID}"
+@using IssueAndStoryTrackerApplication.Data
+@inject StoryService storyService
+@inject NavigationManager navigationManager
+
+<h2>Edit Story</h2>
+<hr />
+
+<EditForm Model="@story" OnValidSubmit="UpdateStory">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <!-- Title input -->
+      <div class="form-group">
+        <label for="Title" class="control-label">Title</label>
+        <input form="Title" class="form-control" @bind="@story.Title" />
+      </div>
+
+      <!-- Associated Product input -->
+      <div class="form-group">
+        <label for="Product" class="control-label">Associated Product</label>
+        <select name="Product" class="form-control" @bind="@story.AssociatedProduct">
+          <option value="">-- Select Associated Product --</option>
+          @foreach (string product in products)
+          {
+            <option value="@product">@product</option>
+          }
+        </select>
+      </div>
+
+      <!-- Work Category input -->
+      <div class="form-group">
+        <label for="Type" class="control-label">Work Category</label>
+        <select name="Type" class="form-control" @bind="@story.WorkProductType">
+          <option value="">-- Select Work Category --</option>
+          @foreach (string workCategory in workCategories)
+          {
+            <option value="@workCategory">@workCategory</option>
+          }
+        </select>
+      </div>
+
+      <!-- Story Description input -->
+      <div class="form-group">
+        <label for="StoryDescription" class="control-label">Story Description</label>
+        <input form="StoryDescription" class="form-control" @bind="@story.StoryDescription" />
+      </div>
+
+      <!-- Completion Criteria input -->
+      <div class="form-group">
+        <label for="CompletionCriteria" class="control-label">Completion Criteria</label>
+        <input form="CompletionCriteria" class="form-control" @bind="@story.CompletionCriteria" />
+      </div>
+
+      <!-- Business Case input -->
+      <div class="form-group">
+        <label for="BusinessCase" class="control-label">Business Case</label>
+        <input form="BusinessCase" class="form-control" @bind="@story.BusinessCase" />
+      </div>
+
+      <!-- Requested By input -->
+      <div class="form-group">
+        <label for="RequestedBy" class="control-label">Requested By</label>
+        <input form="RequestedBy" class="form-control" @bind="@story.RequestedBy" />
+      </div>
+
+      <!-- Estimated Points input -->
+      <div class="form-group">
+        <label for="Points" class="control-label">Estimated Points</label>
+        <input form="Points" class="form-control" @bind="@story.EstimatedPoints" />
+      </div>
+
+      <!-- Story Status input -->
+      <div class="form-group">
+        <label for="Status" class="control-label">Status</label>
+        <select name="Status" class="form-control" @bind="@story.State">
+          <option value="">-- Select Status --</option>
+          @foreach (string statusOption in statusOptions)
+          {
+            <option value="@statusOption">@statusOption</option>
+          }
+        </select>
+      </div>
+
+      <!-- Created By (read only) -->
+      <div class="form-group">
+        <label for="CreatedBy" class="control-label">Created By</label>
+        <input form="CreatedBy" class="form-control" readonly="readonly" disabled="disabled" @bind="@story.CreatedBy" />
+      </div>
+
+      <!-- Created On (read only)-->
+      <div class="form-group">
+        <label for="CreatedOn" class="control-label">Created On</label>
+        <input form="CreatedOn" class="form-control" readonly="readonly" disabled="disabled" @bind="@story.CreatedOn" />
+      </div>
+
+      <!-- Last Updated On (read only)-->
+      <div class="form-group">
+        <label for="LastUpdatedOn" class="control-label">Last Updated On</label>
+        <input form="LastUpdatedOn" class="form-control" readonly="readonly" disabled="disabled" @bind="@story.LastUpdatedOn" />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Edit Issue button -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <button type="submit">Edit Story</button>
+      </div>
+    </div>
+  </div>
+
+</EditForm>
+
+@code {
+
+  /// <summary>
+  /// Gets or sets the ID of the story passed to this component as a parameter.
+  /// </summary>
+  [Parameter]
+  public string CurrentID
+  {
+    get;
+    set;
+  }
+
+  /// <summary>
+  /// Collection of products that can be associated with a story.
+  /// </summary>
+  List<string> products = new List<string>();
+
+  /// <summary>
+  /// Collection of the status options that can be associated with a story.
+  /// </summary>
+  List<string> statusOptions = new List<string>();
+
+  /// <summary>
+  /// Contains the data for the story object to update in the database.
+  /// </summary>
+  private StoryInfo story = new StoryInfo();
+
+  /// <summary>
+  /// Collection of the work categories that can be associated with a story.
+  /// </summary>
+  private List<string> workCategories = new List<string>();
+
+  /// <summary>
+  /// This method loads the data for a story so it can be edited.
+  /// </summary>
+  protected override async Task OnInitializedAsync()
+  {
+    int idAsInt = Convert.ToInt32( CurrentID );
+    story = await Task.Run( () => storyService.GetByID( idAsInt ) );
+    products = await Task.Run( () => storyService.GetProductNames() );
+    statusOptions = await Task.Run( () => storyService.GetStatusOptions() );
+    workCategories = await Task.Run( () => storyService.GetWorkCategories() );
+  }
+
+  /// <summary>
+  /// This method is responsible for calling upon
+  /// the story service to update the data context.
+  /// </summary>
+  protected void UpdateStory()
+  {
+    storyService.Update( story );
+    navigationManager.NavigateTo( "Story" );
+  }
+}

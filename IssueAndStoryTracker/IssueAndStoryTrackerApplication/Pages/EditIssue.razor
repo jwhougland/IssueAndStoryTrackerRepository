@@ -119,7 +119,7 @@
 @code {
 
   /// <summary>
-  /// Gets or sets teh ID of the issue passed to this component as a parameter.
+  /// Gets or sets the ID of the issue passed to this component as a parameter.
   /// </summary>
   [Parameter]
   public string CurrentID
@@ -149,10 +149,8 @@
   List<string> workCategories = new List<string>();
 
   /// <summary>
-  /// This method queries the data context for an issue whose ID matches
-  /// the current ID passed into this razor component.
-  /// </summary>
-  /// <returns>An issue whose ID matches the given ID.</returns>
+  /// This method loads the data for an issue so it can be edited.  
+  /// </summary>  
   protected override async Task OnInitializedAsync()
   {
     int idAsInt = Convert.ToInt32( CurrentID );

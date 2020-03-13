@@ -85,12 +85,12 @@ namespace IssueAndStoryTrackerUnitTests
       IssueServiceStub service = new IssueServiceStub( dataContext );
 
       // Attempt to store an issue in the data context
-      string saveResult = service.Create( issue );
+      service.Create( issue );
 
       // Query the context to get the issue we just made by its ID
       ISTAD.IssueInfo queriedIssue = service.GetByID( issue.WorkInfoID );
 
-      // Verify the get by ID method returned what we expect
+      // Verify the query result meets our expectations
       XU.Assert.Equal( issue, queriedIssue );
     }
 

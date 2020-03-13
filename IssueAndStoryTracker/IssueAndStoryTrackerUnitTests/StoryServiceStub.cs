@@ -3,20 +3,20 @@
 namespace IssueAndStoryTrackerUnitTests
 {
   /// <summary>
-  /// This class inherits from the 
-  /// <see cref="ISTAD.IssueService"/>
+  /// This class inherits from the
+  /// <see cref="ISTAD.StoryService"/>
   /// for unit testing purposes.
   /// </summary>
-  internal class IssueServiceStub : ISTAD.IssueService
+  internal class StoryServiceStub : ISTAD.StoryService
   {
     #region Constructors
 
     /// <summary>
-    /// Creates a fully initialized <see cref="IssueServiceStub"/>
+    /// Creates a fully initialized <see cref="StoryServiceStub"/>
     /// instance using the given <see cref="ISTAD.AppDataContext"/>.
     /// </summary>
     /// <param name="dataContext">Provides access to our test app's data context.</param>
-    internal IssueServiceStub( ISTAD.AppDataContext dataContext ) 
+    internal StoryServiceStub( ISTAD.AppDataContext dataContext )
       : base( dataContext )
     {
       // No processing
@@ -24,11 +24,9 @@ namespace IssueAndStoryTrackerUnitTests
 
     #endregion
 
-    #region Public properties
-
     /// <summary>
-    /// Gets a <see cref="ISTAD.IssueService"/> instance's
-    /// protected <see cref="ISTAD.IssueService.SaveFailureMessage"/>
+    /// Gets a <see cref="ISTAD.StoryService"/> instance's
+    /// protected <see cref="ISTAD.StoryService.SaveFailureMessage"/>
     /// string value.
     /// </summary>
     public string SaveFailureStringStub
@@ -40,8 +38,8 @@ namespace IssueAndStoryTrackerUnitTests
     }
 
     /// <summary>
-    /// Gets a <see cref="ISTAD.IssueService"/> instance's
-    /// protected <see cref="ISTAD.IssueService.SaveSuccessMessage"/>
+    /// Gets a <see cref="ISTAD.StoryService"/> instance's
+    /// protected <see cref="ISTAD.StoryService.SaveSuccessMessage"/>
     /// string value.
     /// </summary>
     public string SaveSuccessStringStub
@@ -51,7 +49,5 @@ namespace IssueAndStoryTrackerUnitTests
         return SaveSuccessMessage;
       }
     }
-
-    #endregion Public properties
   }
 }

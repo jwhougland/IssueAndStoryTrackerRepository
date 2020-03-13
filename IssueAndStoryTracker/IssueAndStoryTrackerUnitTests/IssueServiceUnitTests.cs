@@ -53,7 +53,7 @@ namespace IssueAndStoryTrackerUnitTests
         .GetAll()
         .SingleOrDefault( obj => obj.Equals( issue ) );
 
-      // Verify the queried issue is not null
+      // Verify we found an issue in the context that equals the one we created
       XU.Assert.NotNull( queriedIssue );
     }
 

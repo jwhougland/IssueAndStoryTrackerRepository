@@ -95,7 +95,7 @@ namespace IssueAndStoryTrackerUnitTests
     }
 
     /// <summary>
-    /// This test instantiates the <see cref="ISTAD.IssueService"/>
+    /// This test instantiates the <see cref="ISTAD.IssueService"/>,
     /// creates multiple issues, and verifies we can retrieve them.
     /// </summary>
     [XU.Fact]
@@ -171,16 +171,16 @@ namespace IssueAndStoryTrackerUnitTests
       IssueServiceStub service = new IssueServiceStub( dataContext );
 
       // Attempt to store an issue in the data context
-      string saveResult = service.Create( issue );
+      service.Create( issue );
 
       // Query the context to get the issue we just made by its ID
       ISTAD.IssueInfo queriedIssue = service.GetByID( issue.WorkInfoID );
 
-      // Verify the get by ID method returned what we expect
+      // Verify the query result meets our expectations
       XU.Assert.Equal( issue, queriedIssue );
 
       // Save off the initial value for the last updated timestamp
-      SYS.DateTime initialUpdateTimestamp = queriedIssue.LastUpdatedOn;
+      SYS.DateTime initialTimestamp = queriedIssue.LastUpdatedOn;
 
       // Now let's update the issue locally
       issue.AffectedProductVersion = "1.0.0.1";
@@ -191,11 +191,11 @@ namespace IssueAndStoryTrackerUnitTests
       // Query the context to get the issue we've updated
       ISTAD.IssueInfo queriedUpdatedIssue = service.GetByID( issue.WorkInfoID );
 
-      // Verify the get by ID method returned what we expect
+      // Verify the query result meets our expectations
       XU.Assert.Equal( issue, queriedUpdatedIssue );
 
       // Verify the last updated on property got updated
-      XU.Assert.True( queriedUpdatedIssue.LastUpdatedOn.CompareTo( initialUpdateTimestamp ) > 0 );
+      XU.Assert.True( queriedUpdatedIssue.LastUpdatedOn.CompareTo( initialTimestamp ) > 0 );
     }
 
     #endregion
